@@ -1,0 +1,33 @@
+function virusIndices(testCases, data) {
+    for (let t = 0; t < testCases; t++) {
+        let [p, v] = data[t].split(' ');
+        let indices = [];
+        
+        for (let i = 0; i <= p.length - v.length; i++) {
+            let mismatchCount = 0;
+            for (let j = 0; j < v.length; j++) {
+                if (p[i + j] !== v[j]) {
+                    mismatchCount++;
+                    if (mismatchCount > 1) break;
+                }
+            }
+            if (mismatchCount <= 1) indices.push(i);
+        }
+
+        if (indices.length > 0) {
+            console.log(indices.join(' '));
+        } else {
+            console.log("No Match!");
+        }
+    }
+}
+
+// Sample Input 0
+let testCases = 3;
+let data = [
+    "cgatcg gc",
+    "atcgatcga cgg",
+    "aardvark ab"
+];
+
+virusIndices(testCases, data);
